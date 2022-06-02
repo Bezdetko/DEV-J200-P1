@@ -67,30 +67,16 @@ public class Create extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+        try (PrintWriter out = response.getWriter()) {/* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Create</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<form action=\"viewList\" method=\"POST\">");
-//            out.println("<form action=\"create\" method=\"POST\">");
+//            out.println("<form action=\"viewList\" method=\"POST\">");
+            out.println("<form action=\"create\" method=\"POST\">");
 //            out.println("<form action=\"viewList\">");
             out.println("<h2>Адресс</h2>");
             out.println("<table width=\"100%\" align=\"left\" cellspacing=\"5\">");
@@ -124,7 +110,7 @@ public class Create extends HttpServlet {
             out.println("</td>");
             out.println("<td>");            
 //            out.println("<input name=\"num\" type=\"number\" id=\"num\" placeholder=\"№ дома\" required >*");
-            out.println("<input name=\"num\" type=\"text\" id=\"num\" placeholder=\"№ дома\" ");
+            out.println("<input name=\"num\" type=\"number\" id=\"num\" placeholder=\"№ дома\" ");
             out.println("title=\"номер дома должен быть >0\"");
             out.println("pattern=\"^[1-9]\\d*\"");
             out.println("required >*");
@@ -186,29 +172,75 @@ public class Create extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
             
+        }
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+//        this.request = request;
+//        try (PrintWriter out = response.getWriter()) {
+            
+            
+//        String city = request.getParameter("city").trim();
+//        String street = request.getParameter("street").trim();
+//        int num = Integer.parseInt(request.getParameter("num"));
+//        int subnum = Integer.parseInt(request.getParameter("subnum"));
+//        int flat = Integer.parseInt(request.getParameter("flat"));
+//        String extra = request.getParameter("extra").trim();
+//        String type = request.getParameter("type").trim();
+//        String model = request.getParameter("model").trim();
+//        String ip = request.getParameter("ip").trim();
+        
         String city = request.getParameter("city").trim();
         String street = request.getParameter("street").trim();
-        int num = Integer.parseInt(request.getParameter("num").trim());
-        int subnum = Integer.parseInt(request.getParameter("subnum").trim());
-        int flat = Integer.parseInt(request.getParameter("flat").trim());
+        String tmpNum = request.getParameter("num").trim();
+        String tmpSubnum = request.getParameter("subnum").trim();
+        String tmpFlat = request.getParameter("flat").trim();
         String extra = request.getParameter("extra").trim();
         String type = request.getParameter("type").trim();
         String model = request.getParameter("model").trim();
         String ip = request.getParameter("ip").trim();
         
-                if (new Checker().checkAdress(city, street, num, subnum, flat, extra) == false){
+//        int tmpNum1 = Integer.parseInt(request.getParameter("num").trim());
+//        int tmpSubnum1 = Integer.parseInt(request.getParameter("subnum").trim());
+
+            Checker checker = new Checker();
+
+            
+        if (checker.checkAdress(city, street, tmpNum, tmpSubnum, tmpFlat, extra) == false){
+            String msg = checker.getMsg();
+            request.setAttribute("msg", msg);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error");
             dispatcher.forward(request, response);
-        }
+        }           
+//        if (new Checker().checkAdress(city, street, tmpNum, tmpSubnum, tmpFlat, extra) == false){
+//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error");
+//            dispatcher.forward(request, response);
+//        }
         
         else {
+            int num = Integer.parseInt(tmpNum);
+            int subnum = 0;
+            int flat = 0; 
+            if (!tmpSubnum.isEmpty()){
+                subnum = Integer.parseInt(tmpSubnum);
+            }
+            if (!tmpFlat.isEmpty()){
+                flat = Integer.parseInt(tmpFlat);
+            }
+            
             client = new Client(type, model, ip, city, street, num, subnum, flat, extra);
-            сlientList.add(client);
-//            out.println("<form action=\"viewList\">");
-//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/viewList");
-//            dispatcher.forward(request, response);
-//              out.println("<form action=\"viewList\" method=\"POST\">");
-//            сlientList.add(new Client(type, model, ip, city, street, num, subnum, flat, extra));
+            client.addClient();
             response.sendRedirect("http://localhost:8080/DEV-J200-P1/viewList");
             
             
@@ -245,9 +277,9 @@ public class Create extends HttpServlet {
 //            сlientList.add(client);            
 ////            сlientList.add(new Client(type, model, ip, city, street, num, subnum, flat, extra));
 ////            response.sendRedirect("http://localhost:8080/DEV-J200-P1/viewList");
-
-            
-        }
+//
+//            
+//        }
          
             
         

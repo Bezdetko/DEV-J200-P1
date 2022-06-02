@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Александр
  */
-@WebServlet(name = "mainpage", urlPatterns = {"/*"})
-public class mainpage extends HttpServlet {
+@WebServlet(name = "Error", urlPatterns = {"/error"})
+public class Error extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,22 +37,10 @@ public class mainpage extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet mainpage</title>");           
-            out.println("<div>");            
+            out.println("<title>Servlet Error</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<div>");
-            out.println("<form action=\"create\" method=\"GET\">");
-            out.println("<input type=\"submit\" name=\"Create\" value=\"Добавить нового пользователя\"/>");
-            out.println("</form>");
-            out.println("<div>");
-
-            out.println("<form action=\"viewList\" method=\"POST\">");
-//            out.println("<form action=\"viewList\" method=\"GET\">");
-            out.println("<input type=\"submit\" name=\"viewList\" value=\"Список пользователей\"/>");
-            out.println("</form>");
-            out.println("<div>");
-//            out.println("<h1>Servlet mainpage at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Error: " + request.getAttribute("msg")+ "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

@@ -30,9 +30,12 @@ public class Client {
         
         Client client1 = new Client("laptop", "hp", "255.123.000.123", "СПБ", "Ленинский проспект", 121, 3, 432, null);
 //        сlientList.add(client1);
+        client1.addClient();
         Client client2 = new Client("cellphone", "xiaoimi", "123.010.023.15", "СПБ", "Большой проспект В.О", 10, 1, 12, null);
 //        сlientList.add(client2);
+        client2.addClient();
         client1.addAddress("СПБ", "Блохина", 3, 1, 15, null);
+        
 
 
         
@@ -58,6 +61,7 @@ public class Client {
         
     }
     
+    
     public Client(String type, String model, String ip, String city, String street, int num, int subnum, int flat, String extra) {
         this.idClient = сlientList.size() + 1;
         this.type = type;
@@ -65,7 +69,7 @@ public class Client {
         this.ip = ip;
         addressList = new ArrayList<>();
         addressList.add(new Address(city, street, num, subnum, flat, extra, this));
-        сlientList.add(this);
+//        сlientList.add(this);
     }
     
     

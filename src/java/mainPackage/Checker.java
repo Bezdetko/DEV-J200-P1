@@ -13,14 +13,16 @@ import java.util.regex.Pattern;
  * @author Александр
  */
 public class Checker {
+    
+    String msg;
 
     public Checker() {
     }
     
-    public boolean checkAdress(String city, String street, int num, int subnum, int flat, String extra){
-        String msg;
+        public boolean checkAdress(String city, String street, String num, String subnum, String flat, String extra){
+//        String msg;
         String regexRus = "^[А-Яа-яЁё\\d\\s,\\.-]*";
-//        String regexNum = "^[\\d\\.]*";
+        String regexNum = "^[1-9]\\d*]*";
         Pattern patternRus = Pattern.compile(regexRus);
 //        Pattern patternNum = Pattern.compile(regexNum);
 //        Matcher cityMatcher = patternRus.matcher(city);
@@ -28,7 +30,7 @@ public class Checker {
 //        Matcher extraMatcher = patternRus.matcher(extra);
         
                 
-        if (city.isEmpty() || street.isEmpty() || num == 0){
+        if (city.isEmpty() || street.isEmpty() || num.isEmpty() ){
             msg = "Поля  \"город\", \"улица\", \"№ дома\" должны быть обязательно заполнены";
             return false;
         }
@@ -49,13 +51,66 @@ public class Checker {
 //        }
               
         
-        else if (num<1 || subnum <1 || flat <1){
-            msg = "Поля  \"№ дома\", \"корпус\", \"№ квартиры\" должны быть >0";
+//        else if (!num.matches(regexNum)  || !subnum.matches(regexNum) || !flat.matches(regexNum)){
+//            msg = "Поля  \"№ дома\", \"корпус\", \"№ квартиры\" должны быть >0";
+//            return false;
+//        }
+
+        else if (!num.matches(regexNum)){
+            msg = "Поле  \"№ дома\" должно быть >0";
             return false;
         }
+        
+        else if ( (subnum.matches(regexNum)==false && subnum.isEmpty()==false ) || (flat.matches(regexNum)==false && flat.isEmpty()==false  )){
+            msg = "Поля  \"корпус\", \"№ квартиры\" должны быть >0 или не заплнены";
+            return false;
+        }
+        
+        
            
         return true;
     };
+    
+    
+//    public boolean checkAdress(String city, String street, int num, int subnum, int flat, String extra){
+//        String msg;
+//        String regexRus = "^[А-Яа-яЁё\\d\\s,\\.-]*";
+////        String regexNum = "^[\\d\\.]*";
+//        Pattern patternRus = Pattern.compile(regexRus);
+////        Pattern patternNum = Pattern.compile(regexNum);
+////        Matcher cityMatcher = patternRus.matcher(city);
+////        Matcher streetMatcher = patternRus.matcher(street);
+////        Matcher extraMatcher = patternRus.matcher(extra);
+//        
+//                
+//        if (city.isEmpty() || street.isEmpty() || num == 0){
+//            msg = "Поля  \"город\", \"улица\", \"№ дома\" должны быть обязательно заполнены";
+//            return false;
+//        }
+//        
+//        else if (city.length()>100 || street.length()>100 || extra.length() >200){
+//            msg = "Поля  \"город\", \"улица\", \"№ дома\" должны быть не более 100 сиволов, поле \"дополнительно\" не более 200 символов";
+//            return false;
+//        }
+//        
+//        else if (city.matches(regexRus) == false || street.matches(regexRus) == false || extra.matches(regexRus) == false){
+//            msg = "Поля  \"город\", \"улица\", \"дополнительно\" должны использовать буквы русского";
+//            return false; 
+//        }
+//        
+////        else if (cityMatcher.matches() == false || streetMatcher.matches() == false || extraMatcher.matches() == false){
+////            msg = "Поля  \"город\", \"улица\", \"дополнительно\" должны использовать буквы русского";
+////            return false; 
+////        }
+//              
+//        
+//        else if (num<1 || subnum <1 || flat <1){
+//            msg = "Поля  \"№ дома\", \"корпус\", \"№ квартиры\" должны быть >0";
+//            return false;
+//        }
+//           
+//        return true;
+//    };
     
     
 //            String [] ipString = ip.split(".");
@@ -64,6 +119,10 @@ public class Checker {
 //           for (int i=0; i<ipString.length; i++){
 //               numIp[i] = Integer.parseInt(ipString[i]);
 //           }
+
+    public String getMsg() {
+        return msg;
+    }
         
     
 }
