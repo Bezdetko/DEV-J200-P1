@@ -91,10 +91,12 @@ public class ViewList extends HttpServlet {
 //                                     out.println("<td rowspan=\""+ clientAddressList.size()+ "\">" + "delete"+ "</td>" );
                                      out.println("<td rowspan=\""+ clientAddressList.size()+ "\">");
 //                                     out.println("<a href=\"http://localhost:8080/DEV-J200-P1/update?idClient=\"" + c.getIdClient() + ">Обновить</a>");
+                                    out.println("<button onclick=\"window.location.href = 'http://localhost:8080/DEV-J200-P1//addAddressToClient?idClient="+c.getIdClient() +"';\">Добавить новый адресс</button>");
                                     out.println("<button onclick=\"window.location.href = 'http://localhost:8080/DEV-J200-P1/update?idClient="+c.getIdClient() +"';\">Изменить</button>");        
-                                                
-                                       
 //                                     out.println("</form>");
+//                                     out.println("</td>");
+//                                     out.println("<td rowspan=\""+ clientAddressList.size()+ "\">");
+                                     out.println("<button onclick=\"window.location.href = 'http://localhost:8080/DEV-J200-P1/delete?idClient="+c.getIdClient() +"';\">Удалить</button>");
                                      out.println("</td>");
                                  }
                                  out.println("</tr>");

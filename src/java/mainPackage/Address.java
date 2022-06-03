@@ -43,7 +43,13 @@ public class Address {
 //    }
          
         public Address(String city, String street, int num, int subnum, int flat, String extra, Client client) {
-        idAddress = adressTable.size()+1;
+//        idAddress = adressTable.size()+1;
+        if(adressTable.isEmpty()){
+           idAddress = 1;
+        }
+        else {
+         idAddress = adressTable.get(adressTable.size()-1).getIdAddress()+1;
+        }
         this.city = city;
         this.street = street;
         this.num = num;

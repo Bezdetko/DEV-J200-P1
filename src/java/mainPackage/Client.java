@@ -64,7 +64,13 @@ public class Client {
     
     
     public Client(String type, String model, String ip, String city, String street, int num, int subnum, int flat, String extra) {
-        this.idClient = сlientList.size() + 1;
+//        this.idClient = сlientList.size() + 1;
+        if (сlientList.isEmpty()){
+            idClient = 1;
+        }
+        else {
+            idClient = сlientList.get(сlientList.size()-1).getIdClient()+1;
+        }
         this.type = type;
         this.model = model;
         this.ip = ip;
@@ -144,6 +150,8 @@ public class Client {
     public void addAddress(String city, String street, int num, int subnum, int flat, String extra) {
         Address adressTmp = new Address(city, street, num, subnum, flat, extra, this);
         getAddressList().add(adressTmp);
+        adressTable.add(adressTmp);
+        
 //        getAddressList().add(new Address(city, street, num, subnum, flat, extra, this));
 //        adressTable.add(adressTmp);
         
