@@ -69,7 +69,7 @@ public class Checker {
         
            
         return true;
-    };
+    }
     
     
 //    public boolean checkAdress(String city, String street, int num, int subnum, int flat, String extra){
@@ -113,13 +113,65 @@ public class Checker {
 //    };
     
     
-//            String [] ipString = ip.split(".");
-//        
-//        int [] numIp = new int[ipString.length];
-//           for (int i=0; i<ipString.length; i++){
-//               numIp[i] = Integer.parseInt(ipString[i]);
-//           }
+        
+         public boolean checkClient (String type, String model, String ip){
+             String regexEng = "^[a-zA-Z\\d\\s,\\.-]*";
+//             String regexNum = "^[\\d*]";
+//            String regexIp = "((0|1\\d{0,2}|2([0-4][0-9]|5[0-5]))\\.){3}(0|1\\d{0,2}|2([0-4][0-9]|5[0-5]))";
+            String regexIp = "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
+//             boolean rez = true;             
+            
+             if (type.isEmpty() || model.isEmpty() || ip.isEmpty() ){
+                 msg = "Поля  \"тип устройства\", \"модель устройства\", \"сетевой адресс\" должны быть обязательно заполнены";
+//                 rez = false;
+//                 return rez;
+                return false;
+             }
+                          
+             else if (type.length() > 100 || model.length() >100){
+                 msg = "Поля  \"тип устройства\", \"модель устройства\", должны быть не более 100 сиволов, поле \"сетевой адресс\" не более 25 символов";
+//                 rez = false;
+//                 return rez;
+                return false;
+             }
+             
+             else if (!type.matches(regexEng) || !model.matches(regexEng)){
+                 msg = "Поля  \"тип устройства\", \"модель устройства\" должны использовать буквы латинского алфавита";
+//                 rez = false;
+//                 return rez;
+                return false;
+             }
+             
+             else if (!ip.matches(regexIp)){
+                 msg = "не валидный ip";
+                 return false;
+             }
+             
+//             else if (ip.matches(regexNum)==true){
+//                String [] ipString = ip.split(".");        
+//                int [] numIp = new int[ipString.length];
+//                for (int i=0; i<ipString.length; i++){
+//                    numIp[i] = Integer.parseInt(ipString[i]);
+//                  }
+//                for (int octet: numIp) {
+//                    if (octet > 255){
+//                        rez=false;
+//                        msg = "шз не валиден";
+//                        break;                        
+//                    }
+//                    else rez = true;
+//                }
+//             return rez;  
+//             }
+             
+                return true;
+//             return rez;
+         }
 
+         
+        
+        
+        
     public String getMsg() {
         return msg;
     }

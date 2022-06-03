@@ -30,11 +30,12 @@ public class Client {
         
         Client client1 = new Client("laptop", "hp", "255.123.000.123", "СПБ", "Ленинский проспект", 121, 3, 432, null);
 //        сlientList.add(client1);
-        client1.addClient();
-        Client client2 = new Client("cellphone", "xiaoimi", "123.010.023.15", "СПБ", "Большой проспект В.О", 10, 1, 12, null);
+//        client1.addClient();
+        Client client2 = new Client("cellphone", "xiaoimi", "123.010.023.151", "СПБ", "Большой проспект В.О", 10, 1, 12, null);
 //        сlientList.add(client2);
-        client2.addClient();
+//        client2.addClient();
         client1.addAddress("СПБ", "Блохина", 3, 1, 15, null);
+        Client client3 = new Client("laptop", "samsung", "123.010.023.152", "СПБ", "Большой проспект В.О", 11, 3, 13, "");        
         
 
 
@@ -69,7 +70,7 @@ public class Client {
         this.ip = ip;
         addressList = new ArrayList<>();
         addressList.add(new Address(city, street, num, subnum, flat, extra, this));
-//        сlientList.add(this);
+        сlientList.add(this);
     }
     
     
@@ -144,7 +145,7 @@ public class Client {
         Address adressTmp = new Address(city, street, num, subnum, flat, extra, this);
         getAddressList().add(adressTmp);
 //        getAddressList().add(new Address(city, street, num, subnum, flat, extra, this));
-        adressTable.add(adressTmp);
+//        adressTable.add(adressTmp);
         
     }
     

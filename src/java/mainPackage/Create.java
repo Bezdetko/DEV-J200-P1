@@ -152,7 +152,7 @@ public class Create extends HttpServlet {
             out.println("<b>Модель устройства: </b>");
             out.println("</td>");            
             out.println("<td>");
-            out.println("<input name=\"model\" type=\"text\" id=\"model\" placeholder=\"модель устройства\" maxlength=\"100\" pattern=\"^[a-zA-Z\\s.-]+$\" required>*");
+            out.println("<input name=\"model\" type=\"text\" id=\"model\" placeholder=\"модель устройства\" maxlength=\"100\" pattern=\"^[a-zA-Z\\d\\s,\\.-]+$\" required>*");
             out.println("</td> ");
             out.println("</tr>");            
             out.println("<tr>");
@@ -217,7 +217,7 @@ public class Create extends HttpServlet {
             Checker checker = new Checker();
 
             
-        if (checker.checkAdress(city, street, tmpNum, tmpSubnum, tmpFlat, extra) == false){
+        if (checker.checkAdress(city, street, tmpNum, tmpSubnum, tmpFlat, extra) == false || checker.checkClient(type, model, ip) == false){
             String msg = checker.getMsg();
             request.setAttribute("msg", msg);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error");
@@ -240,7 +240,7 @@ public class Create extends HttpServlet {
             }
             
             client = new Client(type, model, ip, city, street, num, subnum, flat, extra);
-            client.addClient();
+//            client.addClient();
             response.sendRedirect("http://localhost:8080/DEV-J200-P1/viewList");
             
             

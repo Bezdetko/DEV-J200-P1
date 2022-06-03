@@ -69,6 +69,7 @@ public class ViewList extends HttpServlet {
             out.println("<th> <b>Корпус:</b> </th>");
             out.println("<th> <b>№ квартиры</b> </th>");
             out.println("<th> <b>Дополнительно</b> </th>");
+            out.println("<th> <b>Редактирование</b> </th>");
             if(clients!=null && !clients.isEmpty()){
                          for(Client c: clients){
                              c.getAddressList();
@@ -85,13 +86,26 @@ public class ViewList extends HttpServlet {
                                  out.println("<td>" + a.getNum()+ "</td>");
                                  out.println("<td>" + a.getSubnum()+ "</td>");
                                  out.println("<td>" + a.getFlat()+ "</td>");
-                                 out.println("<td>" + a.getExtra()+ "</td>");                                 
+                                 out.println("<td>" + a.getExtra()+ "</td>");      
+                                 if (clientAddressList.indexOf(a) == 0 ){
+//                                     out.println("<td rowspan=\""+ clientAddressList.size()+ "\">" + "delete"+ "</td>" );
+                                     out.println("<td rowspan=\""+ clientAddressList.size()+ "\">");
+//                                     out.println("<a href=\"http://localhost:8080/DEV-J200-P1/update?idClient=\"" + c.getIdClient() + ">Обновить</a>");
+                                    out.println("<button onclick=\"window.location.href = 'http://localhost:8080/DEV-J200-P1/update?idClient="+c.getIdClient() +"';\">Изменить</button>");        
+                                                
+                                       
+//                                     out.println("</form>");
+                                     out.println("</td>");
+                                 }
                                  out.println("</tr>");
                                  out.println("<tr>");
                             }
-                             out.println("</tr>"); 
+                             out.println("</tr>");
+//                             out.println("<td>" + "sdsd"+ "</td>" );
+                             
+                             
                     }
-            out.println("</tr>");
+//            out.println("</tr>");
             out.println("</body>");
             out.println("</html>");
             
