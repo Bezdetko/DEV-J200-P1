@@ -115,6 +115,15 @@ public class Address {
     public void setExtra(String extra) {
         this.extra = extra;
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+    
     
     
      

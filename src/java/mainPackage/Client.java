@@ -31,7 +31,7 @@ public class Client {
         Client client1 = new Client("laptop", "hp", "255.123.000.123", "СПБ", "Ленинский проспект", 121, 3, 432, null);
         Client client2 = new Client("cellphone", "xiaoimi", "123.010.023.151", "СПБ", "Большой проспект В.О", 10, 1, 12, null);
         client1.addAddress("СПБ", "Блохина", 3, 1, 15, null);
-        Client client3 = new Client("laptop", "samsung", "123.010.023.152", "СПБ", "Большой проспект В.О", 11, 3, 13, "");        
+        Client client3 = new Client("laptop", "samsung", "123.010.023.152", "МСК", "Кутузовский проспект", 11, 3, 13, "");        
         
 
 

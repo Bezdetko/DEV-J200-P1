@@ -7,7 +7,11 @@ package mainPackage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ViewList extends HttpServlet {
     HttpServletRequest request;
     List <Client> clients;
+    List<Address> addresses = Address.adressTable;
+    
     
     
     
@@ -44,6 +50,7 @@ public class ViewList extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         this.request = request;
         clients=Client.сlientList;
+        filterCity();
         
         
         
@@ -56,7 +63,40 @@ public class ViewList extends HttpServlet {
             out.println("<title>Servlet ViewList</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h2>Адресс</h2>");
+            out.println("<h2>Список клиентов</h2>");
+            out.println("<form action=\"viewlist\" method=\"GET\">");
+            out.println("<select>");
+//            out.println("<option disabled>Выберите город</option>");
+            List<String> cities = new ArrayList<>();
+            for(Address a: addresses){
+                cities.add(a.getCity());
+            }
+            HashSet set = new HashSet(cities);
+            cities.clear();
+            cities.addAll(set);
+            out.println("<option disabled>Выберите город</option>");            
+            for (String c: cities){
+                out.println("<option value=\"" + c +"\">"+ c + "</option>");
+            }
+//            out.println("<p><input type=\"submit\" value=\"Фильтровать\"></p>");
+//            out.println("<p><input type=\"text\" name=\"streetFilter\"/></p>");
+//            out.println("<form action=\"viewlist\" method=\"GET\">");
+            out.println("<h2> Фильтр по имени </h2>");
+//            out.println("<p><input type=\"text\" name=\"cityFilter\"/></p>");
+            out.println("<p><input type=\"submit\" name=\"cityFilter\" value=\"Фильтровать по городу\"></p>");             
+            out.println("</form>"); 
+            
+            
+//            for (Address a: address){
+//                        cities.add(a.getCity());
+//                        for (String c: cities){
+//                            if (!c.equals(a.getCity()));
+//                            out.println("<option value=\"" + a.getCity() +"\">"+ a.getCity() + "</option>");
+//                        }
+////                        
+////                        out.println("<option value=\"" + a.getCity() +"\">"+ a.getCity() + "</option>");
+//            }
+            out.println("</select>");
             out.println("<table width=\"100%\" align=\"left\" border=\"1\">");
             out.println("<th> <b> ID клиента </b></th>");
             out.println("<th> <b>Тип устройства</b></th>");
@@ -70,8 +110,8 @@ public class ViewList extends HttpServlet {
             out.println("<th> <b>№ квартиры</b> </th>");
             out.println("<th> <b>Дополнительно</b> </th>");
             out.println("<th> <b>Редактирование</b> </th>");
-            if(Client.сlientList!=null && !Client.сlientList.isEmpty()){
-                         for(Client c: Client.сlientList){
+            if(clients!=null && !clients.isEmpty()){
+                         for(Client c: clients){
                              c.getAddressList();
                              List<Address> clientAddressList = c.getAddressList();
                              out.println("<tr>");
@@ -143,6 +183,8 @@ public class ViewList extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+    
+    
 
     /**
      * Returns a short description of the servlet.
@@ -153,5 +195,40 @@ public class ViewList extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    private void filterCity (){
+        String city = Objects.toString(request.getParameter("cityFilter"), "");
+        List<Address> temp = new LinkedList<>();
+        for (Address a: addresses) {
+            if (a.getStreet().contains(city))
+                temp.add(a);                
+        }
+        if(!temp.isEmpty()) 
+            addresses = new ArrayList<>(temp);                
+    }
+            
+//        private void filter(){
+//        String name = Objects.toString(request.getParameter("name"), ""); 
+//        List<Person> temp = new LinkedList<>();
+//        for (Person p: persons){
+//            if(p.getLogin().contains(name)) temp.add(p);
+//        }
+//        if(!temp.isEmpty())
+//        personsFiltered = new ArrayList<>(temp);
+//    }
+            
+//    private void filterStreet() {
+//        String street = Objects.toString(request.getParameter("streetFilter"), "");
+//        List<Address> temp = new LinkedList<>();
+//        for (Address address : addresses) {
+//            if (address.getStreet().contains(street)) 
+//                temp.add(address);
+//        }
+//        if(!temp.isEmpty()) 
+//            addresses = new ArrayList<>(temp);
+//        
+////        return temp;
+//    }
+    
 
 }
