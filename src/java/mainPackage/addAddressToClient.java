@@ -35,7 +35,6 @@ public class addAddressToClient extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -44,7 +43,6 @@ public class addAddressToClient extends HttpServlet {
             out.println("<body>");
 
             out.println("<form action=\"addAddressToClient\" method=\"POST\">");
-//            out.println("<form action=\"viewList\">");
             out.println("<h2>Новый адрес</h2>");
             out.println("<table width=\"100%\" align=\"left\" cellspacing=\"5\">");
             out.println("<tr>");
@@ -76,7 +74,6 @@ public class addAddressToClient extends HttpServlet {
             out.println("<b>№ дома:</b>");
             out.println("</td>");
             out.println("<td>");            
-//            out.println("<input name=\"num\" type=\"number\" id=\"num\" placeholder=\"№ дома\" required >*");
             out.println("<input name=\"num\" type=\"number\" id=\"num\" placeholder=\"№ дома\" ");
             out.println("title=\"номер дома должен быть >0\"");
             out.println("pattern=\"^[1-9]\\d*\"");
@@ -103,7 +100,7 @@ public class addAddressToClient extends HttpServlet {
             out.println("<p> <b>Дополнительно:</b> </p>");
             out.println("<p> <textarea name=\"extra\" maxlength=\"100\" cols=\"40\" rows=\"5\" placeholder=\"Дополнительньная информация. Используйте кириллицу\"></textarea> </p>");
             
-            out.println("<input type=\"submit\" name=\"add\" value=\"добавить\"/>");
+            out.println("<input type=\"submit\" name=\"add\" value=\"Добавить\"/>");
             out.println("<input type=\"button\" onclick=\"history.back();\" value=\"Назад\"/>");
             
             out.println("</body>");
@@ -125,7 +122,7 @@ public class addAddressToClient extends HttpServlet {
             throws ServletException, IOException {
         String idLine = request.getParameter("idClient");
         Integer idClient = Integer.parseInt(idLine);
-        client = Client.сlientList.get(idClient-1);
+        client = Client.getClientById(idClient);
         processRequest(request, response);
     }
 

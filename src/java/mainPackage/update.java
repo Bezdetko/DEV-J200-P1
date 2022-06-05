@@ -37,13 +37,11 @@ public class update extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+
             out.println("<title>Create</title>");            
             out.println("</head>");
             out.println("<body>");
-//            out.println("<form action=\"viewList\" method=\"POST\">");
             out.println("<form action=\"update\" method=\"POST\">");
-//            out.println("<form action=\"viewList\">");
             out.println("<h2>Адресса</h2>");
             for(Address a: client.getAddressList()){
             out.println("<table width=\"100%\" align=\"left\" cellspacing=\"5\">");
@@ -153,7 +151,7 @@ public class update extends HttpServlet {
             throws ServletException, IOException {
         String idLine = request.getParameter("idClient");
         Integer idClient = Integer.parseInt(idLine);
-        client = Client.сlientList.get(idClient-1);
+        client = Client.getClientById(idClient);
         processRequest(request, response);
     }
 
@@ -175,21 +173,6 @@ public class update extends HttpServlet {
         
         Checker checker = new Checker();
 
-//        boolean[] check = new boolean[client.getAddressList().size()+1];
-        
-//        for (int i = 1; i < client.getAddressList().size(); i++){
-//            Address a = client.getAddressList().get(i-1);
-//            String n = Integer.toString(i);
-////        String stringId = Integer.toString(intId);         
-//        String city = request.getParameter("city"+n).trim();
-//        String street = request.getParameter("street"+n).trim();
-//        String tmpNum = request.getParameter("num"+n).trim();
-//        String tmpSubnum = request.getParameter("subnum"+n).trim();
-//        String tmpFlat = request.getParameter("flat"+n).trim();
-//        String extra = request.getParameter("extra"+n).trim();
-//        check[i-1] = checker.checkAdress(city, street, n, tmpSubnum, tmpFlat, extra)
-//            
-//        }
         
         
         for(Address a: client.getAddressList()){

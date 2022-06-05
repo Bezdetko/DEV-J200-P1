@@ -29,39 +29,18 @@ public class Client {
         
         
         Client client1 = new Client("laptop", "hp", "255.123.000.123", "СПБ", "Ленинский проспект", 121, 3, 432, null);
-//        сlientList.add(client1);
-//        client1.addClient();
         Client client2 = new Client("cellphone", "xiaoimi", "123.010.023.151", "СПБ", "Большой проспект В.О", 10, 1, 12, null);
-//        сlientList.add(client2);
-//        client2.addClient();
         client1.addAddress("СПБ", "Блохина", 3, 1, 15, null);
         Client client3 = new Client("laptop", "samsung", "123.010.023.152", "СПБ", "Большой проспект В.О", 11, 3, 13, "");        
         
 
 
-        
-//        List<Address> addressList1 = new ArrayList<>();
-////        Client client1;
-//        Address c1Adr1 = new Address("СПБ", "Ленинский проспект", 121, 3, 432, null);
-//        addressList1.add(c1Adr1);
-//        
-//        Address c1Adr2 = new Address("СПБ", "Блохина", 3, 1, 15, null);
-//        addressList1.add(c1Adr2);
-//        
-//        
-//        
-//        сlientList.add(new Client(сlientList.size()+1, "laptop", "hp", "255.123.000.123", addressList1));
-//        
-//        List<Address> addressList2 = new ArrayList<>();
-//        Address c2Adr1 = new Address(addressList2.size()+1, "СПБ", "Большой проспект В.О", 10, 1, 12, null);
-//        addressList2.add(c2Adr1);
-//
-//        сlientList.add(new Client(сlientList.size()+1, "cellphone", "xiaoimi", "123.010.023.153",addressList2));
-//        
+         
         
         
     }
     
+    public Client(){}
     
     public Client(String type, String model, String ip, String city, String street, int num, int subnum, int flat, String extra) {
 //        this.idClient = сlientList.size() + 1;
@@ -80,32 +59,7 @@ public class Client {
     }
     
     
- // работает v.1
-//    public Client(String type, String model, String ip, String city, String street, int num, int subnum, int flat, String extra) {
-//        this.idClient = сlientList.size() + 1;
-//        this.type = type;
-//        this.model = model;
-//        this.ip = ip;
-//        addressList = new ArrayList<>();
-//        Address adressTmp = new Address(city, street, num, subnum, flat, extra, this);
-//        addressList.add(adressTmp);
-//        сlientList.add(this);
-//        
-//        
-////        adressTable.add(adressTmp);
-//        
-////        addressList.add(new Address(city, street, num, subnum, flat, extra, this));
-////        adressTable.add(new Address(city, street, num, subnum, flat, extra, this));
-//    }
-    
-//        public Client(String type, String model, String ip) {
-//        this.idClient = сlientList.size() + 1;
-//        this.type = type;
-//        this.model = model;
-//        this.ip = ip;
-//        addressList = new ArrayList<>();
-//        addressList.add(new Address(city, street, num, subnum, flat, extra, this));
-//    }
+
 
     public int getIdClient() {
         return idClient;
@@ -171,7 +125,14 @@ public class Client {
     }
     
     
-    
+    public static Client getClientById(int idClient){
+        for(Client c: Client.сlientList){
+            if(c.getIdClient()==idClient){
+                return c;
+            }
+        }
+        return new Client();
+    }
 
  
     

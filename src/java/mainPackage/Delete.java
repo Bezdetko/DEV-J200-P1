@@ -22,7 +22,7 @@ import static mainPackage.Client.сlientList;
  */
 @WebServlet(name = "Delete", urlPatterns = {"/delete"})
 public class Delete extends HttpServlet {
-        Client client;
+//        Client client;
         HttpServletRequest request;
 
     /**
@@ -67,7 +67,7 @@ public class Delete extends HttpServlet {
         
         String idLine = request.getParameter("idClient");
         Integer idClient = Integer.parseInt(idLine);
-        client = Client.сlientList.get(idClient-1);
+        Client client = Client.getClientById(idClient);
 
         for(Address a: client.getAddressList()){
             adressTable.remove(a);

@@ -70,8 +70,8 @@ public class ViewList extends HttpServlet {
             out.println("<th> <b>№ квартиры</b> </th>");
             out.println("<th> <b>Дополнительно</b> </th>");
             out.println("<th> <b>Редактирование</b> </th>");
-            if(clients!=null && !clients.isEmpty()){
-                         for(Client c: clients){
+            if(Client.сlientList!=null && !Client.сlientList.isEmpty()){
+                         for(Client c: Client.сlientList){
                              c.getAddressList();
                              List<Address> clientAddressList = c.getAddressList();
                              out.println("<tr>");
