@@ -43,7 +43,7 @@ public class addAddressToClient extends HttpServlet {
             out.println("<body>");
 
             out.println("<form action=\"addAddressToClient\" method=\"POST\">");
-            out.println("<h2>Новый адрес</h2>");
+            out.println("<h2>Новый адрес для клиента с ID: " + client.getIdClient() + "</h2>");
             out.println("<table width=\"100%\" align=\"left\" cellspacing=\"5\">");
             out.println("<tr>");
             out.println("<td width=\"150\"> ");

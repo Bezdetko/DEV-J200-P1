@@ -43,13 +43,13 @@ public class mainpage extends HttpServlet {
             out.println("<body>");
             out.println("<div>");
             out.println("<form action=\"create\" method=\"GET\">");
-            out.println("<input type=\"submit\" name=\"Create\" value=\"Добавить нового пользователя\"/>");
+            out.println("<input type=\"submit\" name=\"Create\" value=\"Добавить нового клиента\"/>");
             out.println("</form>");
             out.println("<div>");
 
             out.println("<form action=\"viewList\" method=\"POST\">");
 //            out.println("<form action=\"viewList\" method=\"GET\">");
-            out.println("<input type=\"submit\" name=\"viewList\" value=\"Список пользователей\"/>");
+            out.println("<input type=\"submit\" name=\"viewList\" value=\"Список клиентов\"/>");
             out.println("</form>");
             out.println("<div>");
 //            out.println("<h1>Servlet mainpage at " + request.getContextPath() + "</h1>");

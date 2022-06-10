@@ -28,10 +28,11 @@ public class Client {
         сlientList = new ArrayList<>();
         
         
-        Client client1 = new Client("laptop", "hp", "255.123.000.123", "СПБ", "Ленинский проспект", 121, 3, 432, null);
-        Client client2 = new Client("cellphone", "xiaoimi", "123.010.023.151", "СПБ", "Большой проспект В.О", 10, 1, 12, null);
-        client1.addAddress("СПБ", "Блохина", 3, 1, 15, null);
-        Client client3 = new Client("laptop", "samsung", "123.010.023.152", "МСК", "Кутузовский проспект", 11, 3, 13, "");        
+        Client client1 = new Client("laptop", "hp", "255.123.000.123", "СПБ", "Ленинский проспект", 121, 3, 432, "");
+        Client client2 = new Client("cellphone", "xiaoimi", "123.010.023.151", "СПБ", "Большой проспект В.О", 10, 1, 12, "");
+        client1.addAddress("СПБ", "Блохина", 3, 1, 15, "");
+        Client client3 = new Client("laptop", "samsung", "123.010.023.152", "МСК", "Кутузовский проспект", 11, 3, 13, "");
+        
         
 
 
@@ -104,7 +105,7 @@ public class Client {
     public void addAddress(String city, String street, int num, int subnum, int flat, String extra) {
         Address adressTmp = new Address(city, street, num, subnum, flat, extra, this);
         getAddressList().add(adressTmp);
-        adressTable.add(adressTmp);
+//        adressTable.add(adressTmp);
         
 //        getAddressList().add(new Address(city, street, num, subnum, flat, extra, this));
 //        adressTable.add(adressTmp);

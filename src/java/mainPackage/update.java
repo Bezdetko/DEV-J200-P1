@@ -38,12 +38,13 @@ public class update extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            out.println("<title>Create</title>");            
+            out.println("<title>update</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<form action=\"update\" method=\"POST\">");
             out.println("<h2>Адресса</h2>");
             for(Address a: client.getAddressList()){
+            out.println("<h3>ID адреса: " + a.getIdAddress() + "</h3>");    
             out.println("<table width=\"100%\" align=\"left\" cellspacing=\"5\">");
             out.println("<tr>");
             out.println("<td width=\"150\"> ");
@@ -100,7 +101,8 @@ public class update extends HttpServlet {
             out.println("<p> <b>Дополнительно:</b> </p>");
             out.println("<p> <textarea name=\"extra"+ a.getIdAddress() +"\" maxlength=\"100\" cols=\"40\" rows=\"5\" placeholder=\"Дополнительньная информация. Используйте кириллицу\" value=\""+ a.getExtra() +" \"></textarea> </p>");
             }
-            out.println("<h2>Клиент</h2>");            
+            out.println("<h2>Клиент</h2>"); 
+            out.println("<h3>ID клиента: " + client.getIdClient() + "</h3>"); 
             out.println("<table width=\"100%\" align=\"left\" cellspacing=\"5\">");
             out.println("<tr>");
             out.println("<td width=\"150\">");            
@@ -131,6 +133,10 @@ public class update extends HttpServlet {
             out.println("<p>* -  поля обязательные для заполнения</p>");
             out.println("<br>");              
             out.println("<input type=\"submit\" name=\"add\" value=\"Изменить\"/>");
+            out.println("</form>");
+            out.println("<p>");            
+            out.println("<button onclick=\"window.location.href = 'http://localhost:8080/DEV-J200-P1/addAddressToClient?idClient="+client.getIdClient() +"';\">Добавить новый адресс</button>");
+            out.println("</p>");   
             out.println("<input type=\"button\" onclick=\"history.back();\" value=\"Назад\"/>");
             out.println("</body>");
             out.println("</html>");

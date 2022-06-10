@@ -41,7 +41,7 @@ public class Address {
 //        this.extra = extra;
 ////        this.client =client;
 //    }
-         
+        public Address(){}; 
         public Address(String city, String street, int num, int subnum, int flat, String extra, Client client) {
 //        idAddress = adressTable.size()+1;
         if(adressTable.isEmpty()){
@@ -124,6 +124,14 @@ public class Address {
         this.client = client;
     }
     
+    public static Address getAddressById(int idAddress){
+        for(Address a: Address.adressTable){
+            if(a.getIdAddress()==idAddress){
+                return a;
+            }
+        }
+        return new Address();
+    }    
     
     
      

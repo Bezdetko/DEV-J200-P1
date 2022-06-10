@@ -65,14 +65,18 @@ public class Delete extends HttpServlet {
             throws ServletException, IOException {
         this.request = request;
         
-        String idLine = request.getParameter("idClient");
-        Integer idClient = Integer.parseInt(idLine);
-        Client client = Client.getClientById(idClient);
-
-        for(Address a: client.getAddressList()){
-            adressTable.remove(a);
+        String idLine = request.getParameter("idAddress");
+        Integer idAddress = Integer.parseInt(idLine);
+        Address address = Address.getAddressById(idAddress);
+        Client client = address.getClient();
+        
+        Address.adressTable.remove(address);
+        
+        client.getAddressList().remove(address);
+        if (client.getAddressList().isEmpty()){
+            Client.сlientList.remove(client);
         }
-        сlientList.remove(client);
+        
         
 //        processRequest(request, response);
         response.sendRedirect("http://localhost:8080/DEV-J200-P1/viewList");        
